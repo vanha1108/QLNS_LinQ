@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace PhanMemQuanLyNhanSu
 {
     public partial class FormPhongBan : Form
@@ -32,25 +33,14 @@ namespace PhanMemQuanLyNhanSu
             _form_resize._resize();
         }
 
-        DataTable dtPhongBan = null;
-        string error;
-        bool isThem = true;
-        PhongBan dbPhongBan = new PhongBan();
+        PhongBanS dbPhongBan = new PhongBanS();
 
         void Loaddata()
         {
             try
-            {
-                dtPhongBan = new DataTable();
-                dtPhongBan.Clear();
-
-                DataSet ds = dbPhongBan.LayPhongBan();
-                dtPhongBan = ds.Tables[0];
-
-                dgvPhongBan.DataSource = dtPhongBan;
+            { 
+                dgvPhongBan.DataSource = dbPhongBan.LayPhongBan();
                 dgvPhongBan.AutoResizeColumns();
-
-                dgvPhongBan_CellClick(null, null);
             }
             catch
             {
@@ -65,22 +55,11 @@ namespace PhanMemQuanLyNhanSu
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            isThem = true;
-        }
-
-        private void btnSua_Click(object sender, EventArgs e)
-        {
-            isThem = false;
-        }
-
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            if (isThem == true)
-            {
+            
                 try
                 {
-                    PhongBan pb = new PhongBan();
-                    pb.ThemPhongBan(this.txtMaPhongBan.Text, this.txtTenPhongBan.Text, this.txtTruongPhong.Text, this.dtbNgayNhanChuc.Text, ref error);
+                    PhongBanS pb = new PhongBanS();
+                    pb.ThemPhongBan(this.txtMaPhongBan.Text, this.txtTenPhongBan.Text, this.txtTruongPhong.Text, this.dtbNgayNhanChuc.Text);
                     Loaddata();
 
                     MessageBox.Show("Đã thêm");
@@ -89,21 +68,22 @@ namespace PhanMemQuanLyNhanSu
                 {
                     MessageBox.Show("Lỗi thêm");
                 }
-            }
-            else
-            {
-                try
-                {
-                    PhongBan pb = new PhongBan();
-                    pb.CapNhatPhongBan(this.txtMaPhongBan.Text, this.txtTenPhongBan.Text, this.txtTruongPhong.Text, this.dtbNgayNhanChuc.Text, ref error);
+           
+        }
 
-                    Loaddata();
-                    MessageBox.Show("Đã sửa xong!");
-                }
-                catch (SqlException)
-                {
-                    MessageBox.Show("Lỗi khi sửa");
-                }
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PhongBanS pb = new PhongBanS();
+                pb.CapNhatPhongBan(this.txtMaPhongBan.Text, this.txtTenPhongBan.Text, this.txtTruongPhong.Text, this.dtbNgayNhanChuc.Text);
+
+                Loaddata();
+                MessageBox.Show("Đã sửa xong!");
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Lỗi khi sửa");
             }
         }
 
@@ -114,13 +94,12 @@ namespace PhanMemQuanLyNhanSu
 
         private void dgvPhongBan_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            {
-                int r = dgvPhongBan.CurrentCell.RowIndex;
-                txtMaPhongBan.Text = dgvPhongBan.Rows[r].Cells[0].Value.ToString();
-                txtTenPhongBan.Text = dgvPhongBan.Rows[r].Cells[1].Value.ToString();
-                txtTruongPhong.Text = dgvPhongBan.Rows[r].Cells[2].Value.ToString();
-                dtbNgayNhanChuc.Text = dgvPhongBan.Rows[r].Cells[3].Value.ToString();
-            }
+            DataGridViewRow row = new DataGridViewRow();
+            row = dgvPhongBan.Rows[e.RowIndex];
+            txtMaPhongBan.Text = row.Cells[0].Value.ToString();
+            txtTenPhongBan.Text = row.Cells[1].Value.ToString();
+            txtTruongPhong.Text = row.Cells[2].Value.ToString();
+            dtbNgayNhanChuc.Text = row.Cells[3].Value.ToString();
         }
 
         private void btnThoat_Click(object sender, EventArgs e)

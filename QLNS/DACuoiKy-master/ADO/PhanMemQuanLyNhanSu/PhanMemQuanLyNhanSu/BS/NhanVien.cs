@@ -14,13 +14,16 @@ namespace PhanMemQuanLyNhanSu.BS
     class NhanVien
     {
         DBMain db = null;
+        
         public NhanVien()
         {
 
             db = new DBMain();
+            
         }
         public DataSet LayNhanVien()
         {
+            
             return db.ExecuteQueryDataSet("select * from NhanVien", CommandType.Text);
         }
 

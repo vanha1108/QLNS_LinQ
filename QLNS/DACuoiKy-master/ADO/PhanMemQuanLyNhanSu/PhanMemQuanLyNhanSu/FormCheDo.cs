@@ -13,10 +13,10 @@ namespace PhanMemQuanLyNhanSu
 {
     public partial class FormCheDo : Form
     {
-        CheDo cheDo = null;
+        CheDoS cheDo = null;
         public FormCheDo()
         {
-            cheDo = new CheDo();
+            cheDo = new CheDoS();
             InitializeComponent();
         }
 

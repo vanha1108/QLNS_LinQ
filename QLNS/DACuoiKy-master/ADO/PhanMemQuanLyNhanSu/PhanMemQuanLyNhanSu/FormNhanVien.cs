@@ -55,9 +55,9 @@ namespace PhanMemQuanLyNhanSu
                 dgvNhanVien.AutoResizeColumns();
 
                 DataTable dtPhong = new DataTable();
-                PhongBan dbPhongBan = new PhongBan();
-                DataSet datap = dbPhongBan.LayPhongBan();
-                dtPhong = datap.Tables[0];
+                PhongBanS dbPhongBan = new PhongBanS();
+                //DataSet datap = dbPhongBan.LayPhongBan();
+                //dtPhong = datap.Tables[0];
 
                 this.cbbPhongBan.DataSource = dtPhong;
                 this.cbbPhongBan.DisplayMember = "TenPB";
@@ -69,9 +69,9 @@ namespace PhanMemQuanLyNhanSu
                 (dgvNhanVien.Columns["Phong"] as DataGridViewComboBoxColumn).ReadOnly = true;
 
                 DataTable dtLuong = new DataTable();
-                Luong dbLuong = new Luong();
-                DataSet datal = dbLuong.LayLuong();
-                dtLuong = datal.Tables[0];
+                //LuongS dbLuong = new LuongS();
+                //DataSet datal = dbLuong.LayLuong();
+                //dtLuong = datal.Tables[0];
 
                 this.cbbLuong.DataSource = dtLuong;
                 this.cbbLuong.DisplayMember = "MaLuong";

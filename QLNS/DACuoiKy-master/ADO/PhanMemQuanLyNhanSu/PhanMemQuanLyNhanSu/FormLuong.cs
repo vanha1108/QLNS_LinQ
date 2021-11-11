@@ -19,25 +19,14 @@ namespace PhanMemQuanLyNhanSu
             InitializeComponent();
         }
 
-        DataTable dtLuong = null;
-        string error;
-        bool isThem = true;
-        Luong dbLuong = new Luong();
+        LuongS dbLuong = new LuongS();
 
         void Loaddata()
         {
             try
             {
-                dtLuong = new DataTable();
-                dtLuong.Clear();
-
-                DataSet ds = dbLuong.LayLuong();
-                dtLuong = ds.Tables[0];
-
-                dgvLuong.DataSource = dtLuong;
+                dgvLuong.DataSource = dbLuong.LayLuong();
                 dgvLuong.AutoResizeColumns();
-
-                dgvLuong_CellClick(null, null);
             }
             catch
             {
@@ -56,45 +45,33 @@ namespace PhanMemQuanLyNhanSu
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            isThem = true;
+            try
+            {
+                LuongS luong = new LuongS();
+                luong.ThemLuong(this.txtMaLuong.Text, this.txtTenLuong.Text, this.txtLuongCB.Text, this.txtHeSoLuong.Text);
+                Loaddata();
+
+                MessageBox.Show("Đã thêm");
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Lỗi thêm");
+            }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            isThem = false;
-        }
-
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            if (isThem == true)
+            try
             {
-                try
-                {
-                    Luong luong = new Luong();
-                    luong.ThemLuong(this.txtMaLuong.Text, this.txtTenLuong.Text, this.txtLuongCB.Text, this.txtHeSoLuong.Text, ref error);
-                    Loaddata();
+                LuongS luong = new LuongS();
+                luong.CapNhatLuong(this.txtMaLuong.Text, this.txtTenLuong.Text, this.txtLuongCB.Text, this.txtHeSoLuong.Text);
+                Loaddata();
 
-                    MessageBox.Show("Đã thêm");
-                }
-                catch (SqlException)
-                {
-                    MessageBox.Show("Lỗi thêm");
-                }
+                MessageBox.Show("Đã sửa xong!");
             }
-            else
+            catch (SqlException)
             {
-                try
-                {
-                    Luong luong = new Luong();
-                    luong.CapNhatLuong(this.txtMaLuong.Text, this.txtTenLuong.Text, this.txtLuongCB.Text, this.txtHeSoLuong.Text, ref error);
-                    Loaddata();
-
-                    MessageBox.Show("Đã sửa xong!");
-                }
-                catch (SqlException)
-                {
-                    MessageBox.Show("Lỗi khi sửa");
-                }
+                MessageBox.Show("Lỗi khi sửa");
             }
         }
 
@@ -102,8 +79,8 @@ namespace PhanMemQuanLyNhanSu
         {
             try
             {
-                Luong luong = new Luong();
-                luong.XoaLuong(this.txtMaLuong.Text, ref error);
+                LuongS luong = new LuongS();
+                luong.XoaLuong(this.txtMaLuong.Text);
 
                 Loaddata();
                 MessageBox.Show("Đã xóa xong!");
@@ -118,14 +95,13 @@ namespace PhanMemQuanLyNhanSu
 
         private void dgvLuong_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int r = dgvLuong.CurrentCell.RowIndex;
-            if (!dgvLuong.Rows[r].Cells[0].Value.ToString().Equals(""))
-            {
-                txtMaLuong.Text = dgvLuong.Rows[r].Cells[0].Value.ToString();
-                txtTenLuong.Text = dgvLuong.Rows[r].Cells[1].Value.ToString();
-                txtLuongCB.Text = dgvLuong.Rows[r].Cells[2].Value.ToString();
-                txtHeSoLuong.Text = dgvLuong.Rows[r].Cells[3].Value.ToString();
-            }
+            DataGridViewRow row = new DataGridViewRow();
+            row = dgvLuong.Rows[e.RowIndex];
+            txtMaLuong.Text = row.Cells[0].Value.ToString();
+            txtTenLuong.Text = row.Cells[1].Value.ToString();
+            txtLuongCB.Text = row.Cells[2].Value.ToString();
+            txtHeSoLuong.Text = row.Cells[3].Value.ToString();
+            
         }
 
         private void btnThoat_Click(object sender, EventArgs e)

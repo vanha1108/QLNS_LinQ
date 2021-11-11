@@ -47,14 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BS\CheDo.cs" />
+    <Compile Include="BS\CheDoS.cs" />
     <Compile Include="BS\DangNhap.cs" />
     <Compile Include="BS\ChamCong.cs" />
     <Compile Include="BS\DuAn.cs" />
-    <Compile Include="BS\Luong.cs" />
+    <Compile Include="BS\LuongS.cs" />
     <Compile Include="BS\NhanVien.cs" />
     <Compile Include="BS\PhanCong.cs" />
-    <Compile Include="BS\PhongBan.cs" />
+    <Compile Include="BS\PhongBanS.cs" />
     <Compile Include="DB\DBMain.cs" />
     <Compile Include="DB\QuanLyNhanSu_Database.designer.cs">
       <AutoGen>True</AutoGen>

@@ -18,11 +18,12 @@ namespace PhanMemQuanLyNhanSu
         {
             InitializeComponent();
         }
+
         string err;
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
             DangNhap dn = new DangNhap();
-            bool check =dn.KtraTaiKhoan(this.txtUser.Text, this.txtPass.Text, ref err);
+            bool check = dn.KtraTaiKhoan(this.txtUser.Text, this.txtPass.Text);
             if(check==true)
             {
                 FormMain.isDangNhap = true;

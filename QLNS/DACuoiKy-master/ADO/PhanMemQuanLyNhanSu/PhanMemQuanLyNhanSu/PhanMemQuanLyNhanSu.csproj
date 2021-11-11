@@ -56,6 +56,11 @@
     <Compile Include="BS\PhanCong.cs" />
     <Compile Include="BS\PhongBan.cs" />
     <Compile Include="DB\DBMain.cs" />
+    <Compile Include="DB\QuanLyNhanSu_Database.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyNhanSu_Database.dbml</DependentUpon>
+    </Compile>
     <Compile Include="ExportToExcel.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -160,6 +165,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="DB\QuanLyNhanSu_Database.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>QuanLyNhanSu_Database.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DB\QuanLyNhanSu_Database.dbml.layout">
+      <DependentUpon>QuanLyNhanSu_Database.dbml</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -219,6 +232,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\IconSalary.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

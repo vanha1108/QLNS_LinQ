@@ -181,8 +181,8 @@ namespace PhanMemQuanLyNhanSu
 
         private void cậpNhậtTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form cc = new FormCapNhatTaiKhoan();      
-            //cc.ShowDialog();          
+            Form cc = new FormCapNhatTaiKhoan();
+            cc.ShowDialog();
         }
 
         private void btnCheDo_Click(object sender, EventArgs e)

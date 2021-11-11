@@ -85,7 +85,7 @@ namespace PhanMemQuanLyNhanSu.DB
             }
             return f;
         }
-        public bool GetLuong(string sql,ref string LuongCB, ref string HeSoLuong)
+        public bool GetLuong(string sql,ref string LuongCB, ref string HeSoLuong)       
         {
             SqlDataAdapter DataAdapter = new SqlDataAdapter(sql,conn);
 

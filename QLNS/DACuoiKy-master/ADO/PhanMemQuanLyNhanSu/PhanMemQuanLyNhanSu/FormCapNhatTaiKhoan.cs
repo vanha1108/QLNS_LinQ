@@ -1,5 +1,4 @@
 ﻿using PhanMemQuanLyNhanSu.BS;
-using PhanMemQuanLyNhanSu.DB;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,9 +35,9 @@ namespace PhanMemQuanLyNhanSu
                 MessageBox.Show("Xác nhận mật khẩu không trùng khớp!!!");
                 return;
             }
+
             DangNhap dn = new DangNhap();
-            string err = "";
-            bool check = dn.KtraTaiKhoan(this.txtTenTaiKhoan.Text, this.txtMatKhauHienTai.Text, ref err);
+            bool check = dn.KtraTaiKhoan(this.txtTenTaiKhoan.Text, this.txtMatKhauHienTai.Text);
             if (!check)
             {            
                 MessageBox.Show("Mật khẩu hiện tại không đúng!");
